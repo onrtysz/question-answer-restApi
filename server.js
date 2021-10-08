@@ -26,5 +26,5 @@ app.use(customerrorHandlers)
 
 
 app.listen(PORT, () => {
-    console.log(`App started on ${PORT}: ${process.env.NODE_EV}`)
+    console.log(`App started on ${PORT}: ${process.env.NODE_ENV}`)
 })

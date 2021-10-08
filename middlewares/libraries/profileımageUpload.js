@@ -13,9 +13,9 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         //File/ minetype -image,gif,jpg
 
-        const extension = file.minetype.split("/")[1];
-        req.savedProgileImage = "Image_" + req.user.id + "." + extension
-        cb(null, req.savedProgileImage)
+        const extension = file.mimetype.split("/")[1];
+        req.savedProfileImage = "Image_" + req.user.id + "." + extension
+        cb(null, req.savedProfileImage)
     }
 })
 
