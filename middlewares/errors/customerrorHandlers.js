@@ -1,12 +1,15 @@
 const CustomError=require('../../helpers/error/CustomError')
 const customerrorHandlers=(err,req,res,next)=>{
     let customError=err
-    
+  
  if(err.code === 11000) {
      customError=new CustomError("Duplicated email error:Check your mail",400)
  }
 if (err.name==="SyntaxError") {
     customError=new CustomError("unexpected syntax",400)
+}
+if(err.name==="CastError"){
+    customError=new CustomError("Please provide a valid id",400)
 }
 
     

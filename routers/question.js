@@ -1,17 +1,12 @@
 const express=require('express')
 const {getAllQuestions}=require('../controllers/questions')
 const router=express.Router()
+const {askNewQuestion,getsingleQuestion}=require('../controllers/questions')
+const {getAccessToRoute}=require('../middlewares/auth/auth')
+const {checkQuestionExist}=require('../middlewares//database/databaseErrorHelpers')
 
-router.get ("/question", getAllQuestions)
 
-router.get("/delete",(req,res)=>{
-    res.send("Delete Home Page")
-})
-router.get("/edit",(req,res)=>{
-    res.send("Question Edit Home Page")
-})
-router.get("/merge",(req,res)=>{
-    res.send("Question Merge Home Page")
-})
-
+router.post("/ask",getAccessToRoute,askNewQuestion)
+router.get("/",getAllQuestions)
+router.get("/:id",checkQuestionExist,getsingleQuestion)
 module.exports=router
