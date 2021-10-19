@@ -4,7 +4,7 @@ const asyncErrorWrapper = require("express-async-handler")
 const User = require("../../models/User")
 const { isTokenInclueded, getAccessTokenFromHeader } = require('../../helpers/authorization/tokentest');
 const CustomError = require('..//../helpers/error/CustomError');
-const Question = require('../models/Question')
+const Question = require('../../models/Question')
 const getAccessToRoute = function (req, res, next) {
     //Token
     const { JWT_SECRET_KEY } = process.env;
@@ -40,8 +40,7 @@ const getQuestionOwner = asyncErrorWrapper(async function (req, res, next) {
 
     const question = await Question.findById(questionId);
 
-    const user = await User.findById(id);
-    if (UserId != questionId) {
+    if (question.user != UserId) {
         return next(new customError("Only owner can handle this question", 403))
     };
     next();
