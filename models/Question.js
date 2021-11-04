@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const slugify = require('slugify')
+const Answer=require('./Answer')
 const QuestionSchema = new Schema({
     title: {
         type: String,
@@ -28,7 +29,11 @@ const QuestionSchema = new Schema({
             type: mongoose.Schema.ObjectId,
             ref: "User"
         }
-    ]
+    ],
+    answers:[{
+        type: mongoose.Schema.ObjectId,
+        ref: "Answer"
+    }]
 })
 QuestionSchema.pre("save", function (next) {
     if (!this.isModified("title")) {
